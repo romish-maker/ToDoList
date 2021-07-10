@@ -1,6 +1,6 @@
 import './App.css';
 import {TaskType, Todolist} from './Todolist';
-import React from "react";
+import React, {useCallback} from "react";
 import {AddItemForm} from "./AddItemForm";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
@@ -25,28 +25,26 @@ export type TasksStateType = {
 }
 
 function AppWithRedux() {
+    console.log("App");
     const dispatch = useDispatch()
     const todoLists = useSelector<AppRootState, Array<TodoListType>>((state) => state.todolists)
 
-    function changeFilter(value: typeToFilter, todoListId: string) {
+    const changeFilter = useCallback((value: typeToFilter, todoListId: string) => {
         const action = changeTodolistFilterAC(value, todoListId)
         dispatch(action)
-    }
-
-    let removeTodoList = (toDoListId: string) => {
+    },[dispatch])
+    const removeTodoList = useCallback((toDoListId: string) => {
         const action = removeTodoListAC(toDoListId)
         dispatch(action)
-    }
-    let changeTodoListTitle = (title: string, todoListId: string) => {
+    },[dispatch])
+    const  changeTodoListTitle = useCallback((title: string, todoListId: string) => {
         const action = changeTodolistTitleAC(title, todoListId)
         dispatch(action)
-    }
-
-
-    function addToDoList(title: string) {
+    },[dispatch])
+    const addToDoList = useCallback((title: string) => {
         const action = addTodolistAC(title)
         dispatch(action)
-    }
+    },[dispatch])
 
     return (
         <div className="App">
@@ -68,7 +66,7 @@ function AppWithRedux() {
                 <Grid container spacing={3}>
                     {
                         todoLists.map((tl) => {
-                            return <Grid item>
+                            return <Grid item key={tl.id}>
                                 <Paper style={{padding: "10px"}}>
                                     <Todolist
                                         key={tl.id}
