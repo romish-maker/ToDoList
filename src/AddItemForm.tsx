@@ -45,7 +45,7 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
                    style={ {marginBottom: "20px"}}
         />
         <IconButton onClick={addTask} color={"primary"}>
-            <AddBox/>
+            <AddBox />!
         </IconButton>
     </div>
 })

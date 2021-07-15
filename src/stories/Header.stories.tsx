@@ -1,6 +1,6 @@
 import React from 'react';
-// @ts-ignore
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import { Header } from './Header';
 
 export default {
@@ -8,7 +8,7 @@ export default {
   component: Header,
 } as ComponentMeta<typeof Header>;
 
-const Template: ComponentStory<typeof Header> = (args:any ) => <Header {...args} />;
+const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />;
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {

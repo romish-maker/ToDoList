@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Page } from './Page';
@@ -10,7 +9,7 @@ export default {
   component: Page,
 } as ComponentMeta<typeof Page>;
 
-const Template: ComponentStory<typeof Page> = (args: any) => <Page {...args} />;
+const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />;
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
