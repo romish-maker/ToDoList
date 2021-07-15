@@ -6,7 +6,7 @@ import {EditableSpan} from "./EditableSpan";
 import {Delete} from "@material-ui/icons";
 import {TaskType} from "./Todolist";
 
-type TaskPropsType = {
+export type TaskPropsType = {
     todolistID: string
     task: TaskType
 }
@@ -19,6 +19,7 @@ export const Task = React.memo((props:TaskPropsType) => {
         let newIsDoneValue = e.currentTarget.checked
         dispatch(changeTaskStatusAC(props.task.id, props.todolistID, newIsDoneValue))
     }, [dispatch, props])
+
     const OnChangeTitleHandler = useCallback((newTitle: string) => {
         dispatch(changeTaskTitleAC(newTitle, props.todolistID, props.task.id))
     },[dispatch,props])
